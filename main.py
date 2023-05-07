@@ -18,18 +18,18 @@ def Roll9():
 
 
 def ManpowerRoll():
-    manpowerroll = random.randint(1, 50)
+    manpowerroll = random.randint(20, 85)
     return manpowerroll
 
 
 def Battle():
     global Morale1, Morale2, Manpower1, Manpower2, Losses1, Losses2  
-    Morale1Damage = (0.5 * Roll9())
+    Morale1Damage = (4 * Roll9()) # 0.8 - 7.2 damage
     Morale1 = Morale1 - Morale1Damage
-    Morale2Damage = (0.5 * Roll9())
+    Morale2Damage = (4 * Roll9()) # 0.8 - 7.2 damage
     Morale2 = Morale2 - Morale2Damage
-    Manpower1 = Manpower1 - (ManpowerRoll() * Roll9())
-    Manpower2 = Manpower2 - (ManpowerRoll() * Roll9())
+    Manpower1 = Manpower1 - (ManpowerRoll() * Morale1Damage)
+    Manpower2 = Manpower2 - (ManpowerRoll() * Morale2Damage)
     Losses1 = 10000 - Manpower1
     Losses2 = 10000 - Manpower2
 
@@ -60,27 +60,31 @@ win_counts = load_win_counts("win_counts.json")
 while Morale1 > 0 and Morale2 > 0:
     Battle()
     print(f"Day {Days}")
-    print(f"Army 1 Morale: {Morale1}")
+    print(f"Army 1 Morale: {round(Morale1, 1)}")
     print(f"Army 1 Remaining Men: {Manpower1}")
-    print(f"Army 2 Morale: {Morale2}")
+    print(f"Army 2 Morale: {round(Morale2, 1)}")
     print(f"Army 2 Remaining Men: {Manpower2}")
     print("")
     Days += 1
 
 
-if Morale1 <= 0:
+if Morale1 <= 0 and Morale2 <= 0:
+    print(f"It's a draw after {Days} Days!")
+    print(f"Army 1 Morale: {Morale1}")
+    print(f"Army 2 Morale: {Morale2}")
+elif Morale1 <= 0:
     print(f"Army 2 wins after {Days} Days!")
-    print(f"Morale: {Morale2}")
+    print(f"Morale: {round(Morale2, 1)}")
     win_counts["Army 2"] += 1
     save_win_counts("win_counts.json", win_counts)
 elif Morale2 <= 0:
     print(f"Army 1 wins adter {Days} Days!")
-    print(f"Morale: {Morale1}")
+    print(f"Morale: {round(Morale1, 1)}")
     win_counts["Army 1"] += 1
     save_win_counts("win_counts.json", win_counts)
 
-print(f"Army 1 Casualties: {Losses1} Men")
-print(f"Army 2 Casualties: {Losses2} Men")
+print(f"Army 1 Casualties: {round(Losses1)} Men")
+print(f"Army 2 Casualties: {round(Losses2)} Men")
 
 sys.exit()
 
