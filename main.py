@@ -1,4 +1,4 @@
-#Build 0.4 Stable
+#Build 0.5 Beta
 
 import random
 import sys
@@ -24,8 +24,10 @@ def ManpowerRoll():
 
 def Battle():
     global Morale1, Morale2, Manpower1, Manpower2, Losses1, Losses2  
-    Morale1 = Morale1 - (0.5 * Roll9())
-    Morale2 = Morale2 - (0.5 * Roll9())
+    Morale1Damage = (0.5 * Roll9())
+    Morale1 = Morale1 - Morale1Damage
+    Morale2Damage = (0.5 * Roll9())
+    Morale2 = Morale2 - Morale2Damage
     Manpower1 = Manpower1 - (ManpowerRoll() * Roll9())
     Manpower2 = Manpower2 - (ManpowerRoll() * Roll9())
     Losses1 = 10000 - Manpower1
