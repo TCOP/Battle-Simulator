@@ -1,4 +1,4 @@
-#Build 0.5 Beta
+#Build 0.6 Stable
 
 import random
 import sys
@@ -24,9 +24,9 @@ def ManpowerRoll():
 
 def Battle():
     global Morale1, Morale2, Manpower1, Manpower2, Losses1, Losses2  
-    Morale1Damage = (4 * Roll9()) # 0.8 - 7.2 damage
+    Morale1Damage = (4 * Roll9()) # 4 - 36 damage
     Morale1 = Morale1 - Morale1Damage
-    Morale2Damage = (4 * Roll9()) # 0.8 - 7.2 damage
+    Morale2Damage = (4 * Roll9()) # 4 - 36 damage
     Morale2 = Morale2 - Morale2Damage
     Manpower1 = Manpower1 - (ManpowerRoll() * Morale1Damage)
     Manpower2 = Manpower2 - (ManpowerRoll() * Morale2Damage)
@@ -69,16 +69,16 @@ while Morale1 > 0 and Morale2 > 0:
 
 
 if Morale1 <= 0 and Morale2 <= 0:
-    print(f"It's a draw after {Days} Days!")
+    print(f"It's a draw after {Days - 1} Days!")
     print(f"Army 1 Morale: {Morale1}")
     print(f"Army 2 Morale: {Morale2}")
 elif Morale1 <= 0:
-    print(f"Army 2 wins after {Days} Days!")
+    print(f"Army 2 wins after {Days - 1} Days!")
     print(f"Morale: {round(Morale2, 1)}")
     win_counts["Army 2"] += 1
     save_win_counts("win_counts.json", win_counts)
 elif Morale2 <= 0:
-    print(f"Army 1 wins adter {Days} Days!")
+    print(f"Army 1 wins after {Days - 1} Days!")
     print(f"Morale: {round(Morale1, 1)}")
     win_counts["Army 1"] += 1
     save_win_counts("win_counts.json", win_counts)
