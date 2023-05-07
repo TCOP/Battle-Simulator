@@ -1,4 +1,4 @@
-#Build 0.1 Alpha
+#Build 0.3 Stable
 
 import random
 import sys
