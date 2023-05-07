@@ -1,4 +1,4 @@
-#Build 0.3 Stable
+#Build 0.4 Stable
 
 import random
 import sys
@@ -30,12 +30,12 @@ def Battle():
     Losses1 = 10000 - Manpower1
     Losses2 = 10000 - Manpower2
 
-    #if random.choice([True, False]):
-       # Morale1 = Morale1 - morale_loss1
-       # Morale2 = Morale2 - morale_loss2
-    #else:
-       # Morale2 = Morale2 - morale_loss2
-       # Morale1 = Morale1 - morale_loss1
+    if random.choice([True, False]):
+        Morale1 = Morale1 - morale_loss1
+        Morale2 = Morale2 - morale_loss2
+    else:
+        Morale2 = Morale2 - morale_loss2
+        Morale1 = Morale1 - morale_loss1
 
 
 while Morale1 > 0 and Morale2 > 0:
