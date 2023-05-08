@@ -11,6 +11,7 @@ Morale2 = 100
 Manpower1 = 10000
 Manpower2 = 10000
 Days = 0
+Battles = 0
 
 def Roll9():
     roll9 = random.randint(1,9)
@@ -57,7 +58,7 @@ os.chdir(script_dir)
 win_counts = load_win_counts("win_counts.json")
 
 
-while Morale1 > 0 and Morale2 > 0:
+while Battles < 1000:
     Battle()
     print(f"Day {Days}")
     print(f"Army 1 Morale: {round(Morale1, 1)}")
@@ -66,6 +67,8 @@ while Morale1 > 0 and Morale2 > 0:
     print(f"Army 2 Remaining Men: {Manpower2}")
     print("")
     Days += 1
+    Battles += 1
+    #Need Battles to end - current looping 1000 days instead of battles
 
 
 if Morale1 <= 0 and Morale2 <= 0:
