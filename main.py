@@ -87,9 +87,3 @@ print(f"Army 1 Casualties: {round(Losses1)} Men")
 print(f"Army 2 Casualties: {round(Losses2)} Men")
 
 sys.exit()
-
-
-print("Hello")
-#TESTING TESTING
-
-
