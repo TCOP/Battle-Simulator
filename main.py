@@ -4,6 +4,7 @@ import random
 import sys
 import json
 import os
+from time import sleep
 
 # CONTANTS
 Morale1 = 100
@@ -66,12 +67,23 @@ while Morale1 > 0 and Morale2 > 0:
     print(f"Army 2 Remaining Men: {Manpower2}")
     print("")
     Days += 1
+    sleep(1)
 
 
 if Morale1 <= 0 and Morale2 <= 0:
-    print(f"It's a draw after {Days - 1} Days!")
-    print(f"Army 1 Morale: {Morale1}")
-    print(f"Army 2 Morale: {Morale2}")
+    if Morale1 > Morale2:
+        print(f"Pyrrhic victory for army 1 after {Days - 1} Days!")
+        print(f"Army 1 Morale: {Morale1}")
+        print(f"Army 2 Morale: {Morale2}")
+    elif Morale2 > Morale1:
+        print(f"Pyrrhic victory for army 2 after {Days - 1} Days!")
+        print(f"Army 2 Morale: {Morale2}")
+        print(f"Army 1 Morale: {Morale1}")
+    elif Morale1 == Morale2:
+        print(f"It's a draw after {Days - 1} Days!")
+        print(f"Army 1 Morale: {Morale1}")
+        print(f"Army 2 Morale: {Morale2}")
+
 elif Morale1 <= 0:
     print(f"Army 2 wins after {Days - 1} Days!")
     print(f"Morale: {round(Morale2, 1)}")
@@ -87,3 +99,5 @@ print(f"Army 1 Casualties: {round(Losses1)} Men")
 print(f"Army 2 Casualties: {round(Losses2)} Men")
 
 sys.exit()
+
+
